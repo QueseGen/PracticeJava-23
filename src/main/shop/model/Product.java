@@ -42,6 +42,14 @@ public class Product {
 
         inventory.add(this);
     }
+    
+    public Product(Product product) {
+        this.name = product.name;
+        this.price = product.price;
+        this.size = product.size;
+        this.color = product.color;
+        this.quantity=0;
+    }
 
     public Product(String name, double price, int quantity, int size, String color) {
         this.name = name;
@@ -119,6 +127,10 @@ public class Product {
         }
     }
 
+    public static ArrayList<Product> IventoryList() {
+        return inventory;
+    }
+
     public void updateQuantity(int index, int quanity) {
         index=index-1;
         Product staging= inventory.get(index);
@@ -127,6 +139,18 @@ public class Product {
             System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {  System.out.println("Sorry we only have  "+staging.getQuantity()+" in stock.");}
         
+    }
+
+    public void updateQuantity(String Productname, int quanity) {
+        Product staging = inventory.get(inventory.indexOf(Productname));
+        if (staging.getQuantity() > quanity) {
+            staging.setQuantity(inventory.get(inventory.indexOf(Productname)).getQuantity() - quanity);
+            System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(
+                    inventory.indexOf(Productname)).toString());
+        } else {
+            System.out.println("Sorry we only have  " + staging.getQuantity() + " in stock.");
+        }
+
     }
 
     public void deleteProduct(int index) {
@@ -143,6 +167,14 @@ public class Product {
     public String toString() {
         return "Product [ name=" + name + " | price=" + price + " | quantity=" + quantity + " | size=" + size + " | color="
                 + color + " ]";
+    }
+
+    public int getColor() {
+        return 0;
+    }
+
+    public String getSize() {
+        return null;
     }
 
 }
