@@ -7,6 +7,7 @@ public class Vowels {
         String sentence = scanner.nextLine();
         int vowelsCount = countVowels(sentence);
         System.out.println("Number of vowels: " + vowelsCount);
+        scanner.close();
     }
 
     private static int countVowels(String sentence) {

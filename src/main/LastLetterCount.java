@@ -13,6 +13,7 @@ public class LastLetterCount {
         String newSentence = switchWords(sentence, Integer.valueOf(firstInstanceS[1]), 
                 Integer.valueOf(firstInstanceY[1]));
         System.out.println("The new sentence is: " + newSentence);
+        scanner.close();
     }
 
     private static int countWordsEndingWithS(String sentence) {

@@ -12,6 +12,7 @@ public class TraverseString {
             together=together.append(chars);
         }
         System.out.print(together.toString());
+        scanner.close();
     }
 
     private static HashMap<Character, Integer> countUniqueChars(String sentence) {

@@ -11,6 +11,7 @@ public class RotateString {
         int number = random.nextInt(size) + 1;
         String rotatedWord = rotateWord(sentence, number);
         System.out.println("Count: "+number+"\nNew Word: " + rotatedWord);
+        scanner.close();
     }
 
     private static String rotateWord(String word, int n ) {

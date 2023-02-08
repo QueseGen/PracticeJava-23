@@ -10,6 +10,7 @@ public class Consonants {
         String sentence = scanner.nextLine();
         String[] cConsonants = countConsonants(sentence);
         System.out.println("Number of consonants: " + cConsonants[1]+"\t| New sentence: "+ cConsonants[0]);
+        scanner.close();
     }
 
     private static String[] countConsonants(String sentence) {

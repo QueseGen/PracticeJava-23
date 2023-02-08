@@ -8,6 +8,7 @@ public class Palindrome {
         String word = scanner.nextLine();
         Boolean isPalindrome = reverseSentence(word);   
         System.out.println("Palindrome: " + isPalindrome); 
+        scanner.close();
     }
 
      private static boolean reverseSentence(String original) {
