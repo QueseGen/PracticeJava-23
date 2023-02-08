@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import shop.model.Product;
 
-public class InventoryCRUDTest {
+public class InventoryCRUDUserTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         // Not sure if relevant but Collection
         Product seeinventory = new Product();
 
@@ -31,15 +31,6 @@ public class InventoryCRUDTest {
         System.out.print("How many would you like to buy # "); // would you like to add
         int itemQuan = scannerTest.nextInt();
         seeinventory.updateQuantity(itemNum, itemQuan);
-
-        //Delete
-        System.out.println("If you can delete one item what would it be?");
-        Thread.sleep(3000);
-        seeinventory.getInventory();
-        System.out.print("# ");
-        itemNum = scannerTest.nextInt();
-        seeinventory.deleteProduct(itemNum);
-
         scannerTest.close();
 
     }
