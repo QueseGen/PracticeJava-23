@@ -128,6 +128,15 @@ public class Product {
         } else {  System.out.println("Sorry we only have  "+staging.getQuantity()+" in stock.");}
         
     }
+
+    public void deleteProduct(int index) {
+        index = index - 1;
+        inventory.remove(index);
+        System.out.println("Done. Updated list:\n");
+        getInventory();
+    }
+
+    
     //TO STRING METHOD
 
     @Override
