@@ -1,9 +1,8 @@
 package shop.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+import java.util.*;
  
 
 
@@ -75,9 +74,24 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public static void sortInventory() {
+        Collections.sort(inventory, new Comparator<Product>() {
+
+            @Override
+            public int compare(Product o1, Product o2) {
+                // TODO Auto-generated method stub
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+    }
 
     public static void getInventory(String name) {
-        Collections.sort(inventory);
+        sortInventory();
         if (name == "all") {
             getInventory();
         } else {
@@ -89,17 +103,37 @@ public class Product {
         }
     }
 
+    public static void getInventory(int index) {
+        sortInventory();
+        if (index == 0) {
+            getInventory();
+        } else {
+                    System.out.println("#" + index + ": " + inventory.get(index-1).toString());
+                }
+    }
+
     public static void getInventory() {
+        sortInventory();
         for (int i = 0; i < inventory.size(); i++) {
-            System.out.println("#" + i + ": " + inventory.get(i).toString());
+            System.out.println("#" + (i+1) + ": " + inventory.get(i).toString());
         }
+    }
+
+    public void updateQuantity(int index, int quanity) {
+        index=index-1;
+        Product staging= inventory.get(index);
+        if (staging.getQuantity()>quanity){
+            staging.setQuantity(inventory.get(index).getQuantity() - quanity);
+            System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
+        } else {  System.out.println("Sorry we only have  "+staging.getQuantity()+" in stock.");}
+        
     }
     //TO STRING METHOD
 
     @Override
     public String toString() {
-        return "Product [name=" + name + "| price=" + price + "| quantity=" + quantity + "| size=" + size + "| color="
-                + color + "]";
+        return "Product [ name=" + name + " | price=" + price + " | quantity=" + quantity + " | size=" + size + " | color="
+                + color + " ]";
     }
 
 }
