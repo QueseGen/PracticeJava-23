@@ -30,6 +30,7 @@ public class ShoppingCartTest {
 
         //6. Add to shopping cart        
         admin.getPendingOrder().addItem(2, 7);
+        admin.getPendingOrder().addItem(3, 5);
 
         admin.getPendingOrder().checkout();
     }
