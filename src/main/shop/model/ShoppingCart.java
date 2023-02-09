@@ -62,6 +62,7 @@ public class ShoppingCart {
 
     public void printItems() {
         sortItems();
+        System.out.println("-----------Shopping Cart-----------");
         for (int i = 0; i < getItems().size(); i++) {
             System.out.println("#" + (i + 1) + ": " + getItems().get(i).toString());
         }
@@ -112,7 +113,12 @@ public class ShoppingCart {
 
     public void updateQuantity(int index, int quanity) {
           Product item = new Product(this.items.get(index - 1));
-        if (this.items.get(index - 1).getOriginal().getQuantity() >= (quanity + this.items.get(index - 1).getQuantity())) {
+
+          if(quanity==0){
+            this.items.remove(index-1);
+            this.orginalItems.remove(this.items.get(index-1).getOriginal());
+        }
+        else if (this.items.get(index - 1).getOriginal().getQuantity() >= (quanity + this.items.get(index - 1).getQuantity())) {
            this.items.get(index - 1).setQuantity(quanity+ this.items.get(index - 1).getQuantity());
             System.out.println("Adding: " + quanity + " " + item.getName() + " to Shopping Cart.");
         } else {

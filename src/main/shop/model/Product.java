@@ -133,9 +133,11 @@ public class Product {
 
     public static void getInventory() {
         sortInventory();
+        System.out.println("---------------------------------------------------------------------------------------");
         for (int i = 0; i < inventory.size(); i++) {
             System.out.println("#" + (i+1) + ": " + inventory.get(i).toString());
         }
+        System.out.println("---------------------------------------------------------------------------------------");
     }
 
     public static ArrayList<Product> IventoryList() {
