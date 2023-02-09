@@ -16,6 +16,7 @@ public class Product {
 
     private int size;
     private String color;
+    private Product original;
 
     private static ArrayList<Product> inventory;
 
@@ -48,6 +49,7 @@ public class Product {
         this.price = product.price;
         this.size = product.size;
         this.color = product.color;
+        this.original=product;
         this.quantity=0;
     }
 
@@ -85,6 +87,15 @@ public class Product {
     
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    
+    public Product getOriginal() {
+        return original;
+    }
+
+    public void setOriginal(Product original) {
+        this.original = original;
     }
 
     public static void sortInventory() {
@@ -139,6 +150,18 @@ public class Product {
             System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {  System.out.println("Sorry we only have  "+staging.getQuantity()+" in stock.");}
         
+    }
+
+    public void updateInventory(int index, int quanity) {
+        index = index - 1;
+        Product staging = inventory.get(index);
+        if (staging.getQuantity() > quanity) {
+            staging.setQuantity(inventory.get(index).getQuantity() - quanity);
+            System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
+        } else {
+            System.out.println("Sorry we only have  " + staging.getQuantity() + " in stock.");
+        }
+
     }
 
     public void updateQuantity(String Productname, int quanity) {
