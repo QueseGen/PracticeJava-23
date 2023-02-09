@@ -8,16 +8,17 @@ public class ShoppingCart {
     private double total;
     private ArrayList<Product> items;
     private int quanity;
-    private boolean checkout;
+    private boolean checkedout;
     private User user;
 
     private static ArrayList<ShoppingCart> pastOrders;
 
     // CONSTRUCTORS
     public ShoppingCart(User customer){
-        this.checkout=false;
+        this.checkedout=false;
         this.user=customer;
         this.items= new ArrayList<Product>();
+        pastOrders= new ArrayList<ShoppingCart>();
     }
 
     public double getTotal() {
@@ -66,29 +67,41 @@ public class ShoppingCart {
     }
 
     public void checkout() {
-        this.checkout=true;
+
         for (int i = 0; i < this.items.size(); i++) {
             System.out.println("That should be: " + this.items.get(i));
             for (int j = 0; j < Product.IventoryList().size(); j++) {
                 if(this.items.get(i).getName()==Product.IventoryList().get(j).getName()){
                     this.items.get(i).updateQuantity(j+1,this.items.get(i).getQuantity());
-                    System.out.println("Index is : "+j);
                     Product.IventoryList().set(j, this.items.get(i));
                 }
             }}
       //Getting nullexception
+        this.checkedout=true;
         getPastOrders().add(this);
-        getPastOrders().toString();
+        System.out.println("We have successfully placed your order! ");
+        for (int i = 0; i < this.items.size(); i++) {
+            System.out.println( "#"+ (i+1)+"  " + items.get(i).getName() + " | " + items.get(i).getColor() + "   $" + items
+                    .get(i).getPrice() + " x QTY: " + items.get(i).getQuantity() +"|  Total: "+ (items.get(i)
+                            .getQuantity()*items.get(i).getPrice()) );
+        } System.out.println("\n Total: $"+ getTotal());
+
+        for (ShoppingCart order : getPastOrders()) {
+            System.out.println(order.toString());
+        }
+    
         items.clear();
+        System.out.println(this.getItems().isEmpty());
+
     }
 
-    public ArrayList<ShoppingCart> getPastOrders() {
+    public static ArrayList<ShoppingCart> getPastOrders() {
         return pastOrders;
     }
 
     @Override
     public String toString() {
-        return "ShoppingCart [total=" + total + ", items=" + items + ", quanity=" + quanity + ", checkout=" + checkout
+        return "ShoppingCart [total=" + total + ", items=" + items + ", quanity=" + quanity + ", checked-out=" + checkedout
                 + ", user=" + user + "]";
     }
 
