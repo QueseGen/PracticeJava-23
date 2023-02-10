@@ -1,11 +1,9 @@
 package shop.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.*;
  
-
-
 public class Product {
     
     //VARIABLES
@@ -24,6 +22,11 @@ public class Product {
 
     public Product() {
         Product.inventory = new ArrayList<Product>();
+    }
+
+    public Product( String name, int quanity) {
+        this.name=name;
+        this.quantity=quanity;
     }
 
     public Product(String name, double price, int quantity, int size) {
@@ -50,7 +53,16 @@ public class Product {
         this.size = product.size;
         this.color = product.color;
         this.original=product;
-        this.quantity=0;
+        this.quantity=product.quantity;
+    }
+
+    public Product(Product product, Product old) {
+        this.name = product.name;
+        this.price = product.price;
+        this.size = product.size;
+        this.color = product.color;
+        this.original=old;
+        this.quantity=product.quantity;
     }
 
     public Product(String name, double price, int quantity, int size, String color) {
@@ -133,7 +145,7 @@ public class Product {
 
     public static void getInventory() {
         sortInventory();
-        System.out.println("---------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------Inventory----------------------------------------");
         for (int i = 0; i < inventory.size(); i++) {
             System.out.println("#" + (i+1) + ": " + inventory.get(i).toString());
         }
@@ -157,7 +169,9 @@ public class Product {
     public void updateInventory(int index, int quanity) {
         index = index - 1;
         Product staging = inventory.get(index);
-        if (staging.getQuantity() > quanity) {
+        if((staging.getQuantity()-quanity)==0){
+            inventory.remove(staging);
+        }else if (staging.getQuantity() > quanity) {
             staging.setQuantity(inventory.get(index).getQuantity() - quanity);
             System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {

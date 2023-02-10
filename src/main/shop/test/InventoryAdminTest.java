@@ -2,13 +2,48 @@ package shop.test;
 
 import java.util.Scanner;
 
-import shop.model.Product;
+import shop.model.*;
+import shop.model.User;
 
-public class InventoryCRUDUserTest {
+
+public class Admin extends User{
+
+    public Admin(String name, String password) {
+        super(name, password);
+        //TODO Auto-generated constructor stub
+    }
+    public static void Ops( String operation,int index, int quantity){
+        switch (operation) {
+            case "read":
+                Product.getInventory();
+                break;
+            case "add":
+                Product.IventoryList().add(new Product("Testing", quantity));
+                break;
+            case "alt":
+                Product.getInventory();
+                // get product index
+                index = index - 1;
+                Product.getInventory(index);
+                Product.IventoryList().get(index).setQuantity(3);
+                break;
+            case "del":
+                Product.getInventory();
+                // get product index
+                index = index - 1;
+                Product.getInventory(index);
+                Product.IventoryList().remove(index);
+                break;
+
+        }
+    }
+
+
+}
+public class InventoryAdminTest {
 
     public static void main(String[] args) {
         // Not sure if relevant but Collection
-        Product seeinventory = new Product();
 
         //Create
         new Product("Nike slides", 34.99, 8, "red/white");
@@ -17,21 +52,9 @@ public class InventoryCRUDUserTest {
         new Product("Air Force Ones", 120.99, 16, "white");
         new Product("Nike shoes", 60.99, 16, "blue/white");
         new Product("Benzzy Airs", 34.99, 8, "black/white");
-
+       // Product.getInventory();
         //Read
-        seeinventory.getInventory();
-
-       
-        Scanner scannerTest = new Scanner(System.in);
-        System.out.print("Which product would you like to add to cart # ");
-        int itemNum = scannerTest.nextInt();
-        seeinventory.getInventory(itemNum);
-
-        //Update
-        System.out.print("How many would you like to buy # "); // would you like to add
-        int itemQuan = scannerTest.nextInt();
-        seeinventory.updateQuantity(itemNum, itemQuan);
-        scannerTest.close();
+        //Admin.Ops("read",0,0);
 
     }
 

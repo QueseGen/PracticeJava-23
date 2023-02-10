@@ -29,29 +29,50 @@ public class ShoppingCartTest {
         admin.openShoppingCart();
 
        System.out.println("\n6. Add to shopping cart"); //6. Add to shopping cart        
-        admin.getPendingOrder().addItem(2, 7);
-        admin.getPendingOrder().addItem(3, 5);
+        admin.getPendingOrder().addItem(3, 2);
+        admin.getPendingOrder().addItem(4, 5);
+    
 
         System.out.println("\n7. Show Current shopping Cart:");//7. Show Current shopping Cart
         admin.getPendingOrder().printItems();
 
+        /*
+         * -----------Shopping Cart-----------
+         * #1: Product [ name=Crocs | price=34.99 | quantity=7 | size=0 | color=white ]
+         * #2: Product [ name=Nike shoes | price=60.99 | quantity=7 | size=0 |
+         * color=blue/white ]
+         */
+
         System.out.println("\n8. Update/Delete quantity in Shopping cart");//8. Update quantity in Shopping cart
-        admin.getPendingOrder().updateItem(2, 2); //addItem is better than updateItem
+        admin.getPendingOrder().updateCart(2, 2); //addItem is better than updateItem
         admin.getPendingOrder().printItems();
 
         System.out.println("\n9. add duplicates in Shopping cart");// 8. Update quantity in Shopping cart
-        seeinventory.getInventory();
         admin.getPendingOrder().addItem(2, 4);
-        admin.getPendingOrder().addItem(3, 2);
+        //admin.getPendingOrder().printItems();
+        seeinventory.getInventory();
+        admin.getPendingOrder().addItem(3, 3);
+        admin.getPendingOrder().printItems();
         admin.getPendingOrder().addItem(4, 8);
         admin.getPendingOrder().printItems();
         
         System.out.println("\n10. remove item from  in Shopping cart");// 8. Update quantity in Shopping cart
         admin.getPendingOrder().addItem(3, 0);
-        
+        /*
+         * addItem() can add products to Items by taking the index of inventory list and quanitity add
+         * Basic add to shopping cart/addItem(# on Inventory, # wanting to add)
+         * 
+         * Basic remove from shopping cart/addItem(# on shopping cart, 0)
+         * 
+         * Basic update to shopping cart/addItems(# on Shop)
+         */
         admin.getPendingOrder().printItems();
 
-       // admin.getPendingOrder().checkout();
-       // seeinventory.getInventory();
+        System.out.println("\n11. remove Product from iventory by buying out ");// 8. Update quantity in Shopping cart
+        admin.getPendingOrder().addItem(2, 4);
+
+        admin.getPendingOrder().checkout();
+        seeinventory.getInventory();
+        admin.getPendingOrder().printItems();
     }
 }

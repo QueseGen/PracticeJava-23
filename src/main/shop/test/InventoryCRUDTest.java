@@ -20,7 +20,7 @@ public class InventoryCRUDTest {
 
         //Read
         seeinventory.getInventory();
-
+        
        
         Scanner scannerTest = new Scanner(System.in);
         System.out.print("Which product would you like to add to cart # ");
