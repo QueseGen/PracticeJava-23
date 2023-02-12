@@ -1,5 +1,6 @@
 package shop.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +31,7 @@ public class ShoppingCart {
         for (Product item : this.items) {
             totally = (item.getQuantity() * item.getPrice()) + totally;
         }
-        return totally;
+        return Math.round(totally*100)/100.0;
     }
 
     public void setTotal() {
@@ -230,23 +231,24 @@ public class ShoppingCart {
       //Getting nullexception
         this.checkedout=true;
         getPastOrders().add(this);
-        System.out.println("We have successfully placed your order! ");
+        System.out.println("\n"+this.user.getUsername()+", we have successfully placed your order! \n");
         for (int i = 0; i < this.items.size(); i++) {
             System.out.println( "#"+ (i+1)+"  " + items.get(i).getName() + " | " + items.get(i).getColor() + "   $" + items
                     .get(i).getPrice() + " x QTY: " + items.get(i).getQuantity() +"|  Total: "+ (items.get(i)
                             .getQuantity()*items.get(i).getPrice()) );
-        } System.out.println("\n Total: $"+ getTotal());
+        } System.out.println("-------------------------------------------------------\n Total: $"+ getTotal()+"\n");
 
-        for (ShoppingCart order : getPastOrders()) {
-            System.out.println(order.toString());
-        }
-    
         items.clear();
         System.out.println(this.getItems().isEmpty());
 
     }
     
-    public static void sortCart() {
+    public void printPastOrders(){
+        for (ShoppingCart order : getPastOrders()) {
+            System.out.println(order.toString());
+        }
+    }
+    public void sortCart() {
         Collections.sort(this.items, new Comparator<Product>() {
 
             @Override
