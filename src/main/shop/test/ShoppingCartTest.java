@@ -2,12 +2,13 @@ package shop.test;
 
 import shop.model.Product;
 import shop.model.User;
+import shop.model.Warehouse;
 
 public class ShoppingCartTest {
 
     public static void main(String[] args) {
         System.out.println("\n1. Create inventory/database[COMPLETE]");
-        Product seeinventory= new Product();
+        Warehouse seeinventory= new Warehouse();
 
         System.out.println("\n2. Create user[COMPLETE]");
         User admin= new User("Admin","test123");
