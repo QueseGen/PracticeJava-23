@@ -25,7 +25,7 @@ public class Admin extends User{
                 // get product index
                 index = index - 1;
                 Product.getInventory(index);
-                Product.IventoryList().get(index).setQuantity(3);
+                Product.IventoryList().get(index).setProductQuantity(3);
                 break;
             case "del":
                 Product.getInventory();

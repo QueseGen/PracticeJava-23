@@ -8,12 +8,12 @@ public class Product {
     
     //VARIABLES
 
-    private String name;
-    private double price;
+    private String Productname;
+    private double Productprice;
     private int quantity;
 
     private int size;
-    private String color;
+    private String Productdescription;
     private Product original;
 
     private static ArrayList<Product> inventory;
@@ -25,13 +25,13 @@ public class Product {
     }
 
     public Product( String name, int quanity) {
-        this.name=name;
+        this.Productname=name;
         this.quantity=quanity;
     }
 
     public Product(String name, double price, int quantity, int size) {
-        this.name = name;
-        this.price = price;
+        this.Productname = name;
+        this.Productprice = price;
         this.quantity = quantity;
         this.size = size;
 
@@ -39,65 +39,65 @@ public class Product {
     }
 
     public Product(String name, double price, int quantity,String color) {
-        this.name = name;
-        this.price = price;
+        this.Productname = name;
+        this.Productprice = price;
         this.quantity = quantity;
-        this.color = color;
+        this.Productdescription = color;
 
         inventory.add(this);
     }
     
     public Product(Product product) {
-        this.name = product.name;
-        this.price = product.price;
+        this.Productname = product.Productname;
+        this.Productprice = product.Productprice;
         this.size = product.size;
-        this.color = product.color;
+        this.Productdescription = product.Productdescription;
         this.original=product;
         this.quantity=product.quantity;
     }
 
     public Product(Product product, Product old) {
-        this.name = product.name;
-        this.price = product.price;
+        this.Productname = product.Productname;
+        this.Productprice = product.Productprice;
         this.size = product.size;
-        this.color = product.color;
+        this.Productdescription = product.Productdescription;
         this.original=old;
         this.quantity=product.quantity;
     }
 
     public Product(String name, double price, int quantity, int size, String color) {
-        this.name = name;
-        this.price = price;
+        this.Productname = name;
+        this.Productprice = price;
         this.quantity = quantity;
         this.size = size;
-        this.color = color;
+        this.Productdescription = color;
 
         inventory.add(this);
     }
 
     //GETTERS AND SETTERS
 
-    public String getName() {
-        return name;
+    public String getProductname() {
+        return Productname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductname(String name) {
+        this.Productname = name;
     }
 
-    public double getPrice() {
-        return price;
+    public double getProductprice() {
+        return Productprice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductprice(double price) {
+        this.Productprice = price;
     }
 
-    public int getQuantity() {
+    public int getProductQuantity() {
         return quantity;
     }
     
-    public void setQuantity(int quantity) {
+    public void setProductQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -116,7 +116,7 @@ public class Product {
             @Override
             public int compare(Product o1, Product o2) {
                 // TODO Auto-generated method stub
-                return o1.getName().compareTo(o2.getName());
+                return o1.getProductname().compareTo(o2.getProductname());
             }
         });
     }
@@ -127,7 +127,7 @@ public class Product {
             getInventory();
         } else {
             for (int i = 0; i < inventory.size(); i++) {
-                if (inventory.get(i).name == name) {
+                if (inventory.get(i).Productname == name) {
                     System.out.println("#" + i + ": " + inventory.get(i).toString());
                 }
             }
@@ -159,35 +159,35 @@ public class Product {
     public void updateQuantity(int index, int quanity) {
         index=index-1;
         Product staging= inventory.get(index);
-        if (staging.getQuantity()>quanity){
-            staging.setQuantity(inventory.get(index).getQuantity() - quanity);
+        if (staging.getProductQuantity()>quanity){
+            staging.setProductQuantity(inventory.get(index).getProductQuantity() - quanity);
             System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
-        } else {  System.out.println("Sorry we only have  "+staging.getQuantity()+" in stock.");}
+        } else {  System.out.println("Sorry we only have  "+staging.getProductQuantity()+" in stock.");}
         
     }
 
     public void updateInventory(int index, int quanity) {
         index = index - 1;
         Product staging = inventory.get(index);
-        if((staging.getQuantity()-quanity)==0){
+        if((staging.getProductQuantity()-quanity)==0){
             inventory.remove(staging);
-        }else if (staging.getQuantity() > quanity) {
-            staging.setQuantity(inventory.get(index).getQuantity() - quanity);
+        }else if (staging.getProductQuantity() > quanity) {
+            staging.setProductQuantity(inventory.get(index).getProductQuantity() - quanity);
             System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {
-            System.out.println("Sorry we only have  " + staging.getQuantity() + " in stock.");
+            System.out.println("Sorry we only have  " + staging.getProductQuantity() + " in stock.");
         }
 
     }
 
     public void updateQuantity(String Productname, int quanity) {
         Product staging = inventory.get(inventory.indexOf(Productname));
-        if (staging.getQuantity() > quanity) {
-            staging.setQuantity(inventory.get(inventory.indexOf(Productname)).getQuantity() - quanity);
+        if (staging.getProductQuantity() > quanity) {
+            staging.setProductQuantity(inventory.get(inventory.indexOf(Productname)).getProductQuantity() - quanity);
             System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(
                     inventory.indexOf(Productname)).toString());
         } else {
-            System.out.println("Sorry we only have  " + staging.getQuantity() + " in stock.");
+            System.out.println("Sorry we only have  " + staging.getProductQuantity() + " in stock.");
         }
 
     }
@@ -204,11 +204,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [ name=" + name + " | price=" + price + " | quantity=" + quantity + " | size=" + size + " | color="
-                + color + " ]";
+        return "Product [ name=" + Productname + " | price=" + Productprice + " | quantity=" + quantity + " | size=" + size + " | color="
+                + Productdescription + " ]";
     }
 
-    public int getColor() {
+    public int getProductdescription() {
         return 0;
     }
 
