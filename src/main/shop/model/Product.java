@@ -186,8 +186,7 @@ public class Product {
         Product staging = inventory.get(inventory.indexOf(Productname));
         if (staging.getProductQuantity() > quanity) {
             staging.setProductQuantity(inventory.get(inventory.indexOf(Productname)).getProductQuantity() - quanity);
-            //System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(
-                    inventory.indexOf(Productname)).toString());
+            //System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(inventory.indexOf(Productname)).toString());
         } else {
             System.out.println("Sorry we only have  " + staging.getProductQuantity() + " in stock.");
         }
