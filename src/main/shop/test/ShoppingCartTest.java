@@ -27,7 +27,7 @@ public class ShoppingCartTest {
         admin.openShoppingCart();
 
        System.out.println("\n6. Add to shopping cart[COMPLETE]");        
-        admin.getPendingOrder().addItem(3, 2);
+        admin.getPendingOrder().addItem(3, 8);
         admin.getPendingOrder().addItem(4, 5);
     
 

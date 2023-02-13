@@ -163,7 +163,7 @@ public class Product {
         Product staging= inventory.get(index);
         if (staging.getProductQuantity()>quanity){
             staging.setProductQuantity(inventory.get(index).getProductQuantity() - quanity);
-            System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
+            //System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {  System.out.println("Sorry we only have  "+staging.getProductQuantity()+" in stock.");}
         
     }
@@ -175,7 +175,7 @@ public class Product {
             inventory.remove(staging);
         }else if (staging.getProductQuantity() > quanity) {
             staging.setProductQuantity(inventory.get(index).getProductQuantity() - quanity);
-            System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
+           // System.out.println("Updated #" + (index + 1) + ": " + inventory.get(index).toString());
         } else {
             System.out.println("Sorry we only have  " + staging.getProductQuantity() + " in stock.");
         }
@@ -186,7 +186,7 @@ public class Product {
         Product staging = inventory.get(inventory.indexOf(Productname));
         if (staging.getProductQuantity() > quanity) {
             staging.setProductQuantity(inventory.get(inventory.indexOf(Productname)).getProductQuantity() - quanity);
-            System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(
+            //System.out.println("Updated #" + (inventory.indexOf(Productname) + 1) + ": " + inventory.get(
                     inventory.indexOf(Productname)).toString());
         } else {
             System.out.println("Sorry we only have  " + staging.getProductQuantity() + " in stock.");

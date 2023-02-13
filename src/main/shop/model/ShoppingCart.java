@@ -113,16 +113,14 @@ public class ShoppingCart {
     public void addItem(int index, int quanity) {
         //First get item fro iventory to compare
         Product item = new Product(Product.IventoryList().get(index-1));
-        System.out.println("Selection from Inventory : "+ item.getProductname());
+        //System.out.println("Selection from Inventory : "+ item.getProductname());
 
         //IsinChart
         if(this.orginalItems.contains(item.getOriginal())){
-            System.out.println("Is "+ item.getProductname()+" currently in shopping cart? "+ this.orginalItems
-                    .contains(item.getOriginal()));    
+           //Unit Test: // System.out.println("Is "+ item.getProductname()+" currently in shopping cart? "+ this.orginalItems.contains(item.getOriginal()));    
             //QuantityisZero
             if(quanity==0){
-                System.out.println("Is " + item.getProductname() + " currently in shopping cart but user wants 0? " + (this.orginalItems
-                        .contains(item.getOriginal()) && quanity==0));
+                //Unit Test: // System.out.println("Is " + item.getProductname() + " currently in shopping cart but user wants 0? " + (this.orginalItems.contains(item.getOriginal()) && quanity==0));
             
                 updateItem(this.getOrginalItems().indexOf(item.getOriginal()), quanity);
             } 
@@ -131,17 +129,16 @@ public class ShoppingCart {
             }}
         
         //IsNew
-        else if ( item.getProductQuantity() > quanity) {
-            System.out.println("Is " + item.getProductname() + " currently in shopping cart? " + this.orginalItems
-                    .contains(Product.IventoryList().get(index - 1))); 
+        else if ( item.getProductQuantity() >= quanity) {
+            //UnitTest: // System.out.println("Is " + item.getProductname() + " currently in shopping cart? " + this.orginalItems.contains(Product.IventoryList().get(index - 1))); 
 
             item.setProductQuantity(quanity); //item.getQuantity+quantity
             this.items.add(item);
             //Add to reference to object/item and reference/ list
             this.orginalItems.add(item.getOriginal());
             System.out.println("Added: " + quanity + " " + item.getProductname() + " to Shopping Cart.");}
-        else {
-            System.out.println("Sorry we only hav  " + Product.IventoryList().get(index - 1).getProductQuantity() + " in stock.");
+       else {
+            System.out.println("Sorry we only have " + Product.IventoryList().get(index - 1).getProductQuantity() + " in stock.");
         }
         getSubTotal();
         setQuantity();
@@ -159,7 +156,7 @@ public class ShoppingCart {
     // Shopping Cart / Product(this.items.get(index)
     public void updateCart(int index, int quanity) {
         Product item = new Product(this.items.get(index - 1), this.items.get(index - 1).getOriginal());
-        System.out.println("Selection from Cart : " + item.getProductname());
+        // System.out.println("Selection from Cart : " + item.getProductname());
         if (item.getOriginal().getProductQuantity() > quanity) {    
             item.setProductQuantity(quanity);
             this.items.set(index-1, item);
@@ -175,7 +172,7 @@ public class ShoppingCart {
 
     // Shopping Cart / Product(this.items.get(index)
     public void updateItem(int index, int quanity) {
-        System.out.println("Index: " + index+" should be: " + this.getItems().get(index).getProductname());
+       //  System.out.println("Index: " + index+" should be: " + this.getItems().get(index).getProductname());
         Product item = new Product(this.getItems().get(index), this.getItems().get(index).getOriginal());
         
         if (quanity == 0) {
@@ -202,7 +199,7 @@ public class ShoppingCart {
 
     public void updateQuantity(int index, int quanity) {
           Product item = Product.IventoryList().get(index);
-        System.out.println(index+" : "+item.getProductname());
+       // System.out.println(index+" : "+item.getProductname());
          if (item.getProductQuantity() > (quanity + item.getProductQuantity())) {
            item.setProductQuantity(quanity+ item.getProductQuantity());
             System.out.println("Adding: " + quanity + " " + item.getProductname() + " to Shopping Cart.");
@@ -227,7 +224,7 @@ public class ShoppingCart {
     public void checkout() {
 
         for (int i = 0; i < this.items.size(); i++) {
-            System.out.println("That should be: " + this.items.get(i));
+           // System.out.println("That should be: " + this.items.get(i));
             for (int j = 0; j < Product.IventoryList().size(); j++) {
                 if(this.items.get(i).getProductname()==Product.IventoryList().get(j).getProductname()&& this.items.get(i)
                         .getProductQuantity() == Product.IventoryList().get(j).getProductQuantity()){
@@ -249,7 +246,7 @@ public class ShoppingCart {
          System.out.printf("%46s $%.2f\n","Subtotal:",getSubTotal());
          System.out.printf("%46s $%.2f\n", "Sales Tax:",getSubTotal()*getTaxes());
          System.out.printf("%46s $%.2f\n","Total:", getTotal());
-         System.out.println("Sale Tax is currently: "+ getTaxes());
+         System.out.printf("Sale Tax is currently: %d%s\n", (int)(getTaxes()*100), "%");
          
         items.clear();
         //System.out.println(this.getItems().isEmpty());
