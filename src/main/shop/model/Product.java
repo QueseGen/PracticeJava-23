@@ -143,6 +143,8 @@ public class Product {
                 }
     }
 
+    
+
     public static void getInventory() {
         sortInventory();
         System.out.println("---------------------------------------Inventory----------------------------------------");
@@ -204,12 +206,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [ name=" + Productname + " | price=" + Productprice + " | quantity=" + quantity + " | size=" + size + " | color="
-                + Productdescription + " ]";
+        return "Product [ name=" + Productname + " | price=" + Productprice + " | quantity=" + quantity + " ]";
     }
 
-    public int getProductdescription() {
-        return 0;
+    public String getProductdescription() {
+        return this.Productdescription;
     }
 
     public String getSize() {
