@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class User {
     
     private int id;
+    private boolean admin;
     private String email;
     private String username;
     private String password;
@@ -16,11 +17,30 @@ public class User {
         this.email = email;
         this.username = name;
         this.password = password;
+        this.admin = false;
+    }
+    
+    public User(String email, String name, String password, boolean role) {
+        this.email = email;
+        this.username = name;
+        this.password = password;
+        this.admin = role;
     }
 
     public User(String name, String password) {
         this.username = name;
         this.password = password;
+        this.admin = false;
+    }
+    
+    public User(String name, String password, boolean role) {
+        this.username = name;
+        this.password = password;
+        this.admin = role;
+    }
+
+    public User() {
+        this.admin=false;
     }
 
     //GETTERS AND SETTERS
@@ -43,6 +63,7 @@ public class User {
     public String getPassword() {
         return password;
     }
+    
     public void setPassword(String password) {
         this.password = password;
     }

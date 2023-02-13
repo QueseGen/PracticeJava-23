@@ -47,12 +47,12 @@ public class ShoppingCartTest {
         admin.getPendingOrder().addItem(4, 8);
         admin.getPendingOrder().printItems();
         
-        System.out.println("\n10. remove item from  in Shopping cart");
+        System.out.println("\n10. remove item from  in Shopping cart[COMPLETE]");
         admin.getPendingOrder().addItem(3, 0);
 
         admin.getPendingOrder().printItems();
 
-        System.out.println("\n11. remove Product from iventory by buying out ");
+        System.out.println("\n11. remove Product from iventory by buying out[COMPLETE");
         admin.getPendingOrder().addItem(2, 4);
 
         admin.getPendingOrder().checkout();
