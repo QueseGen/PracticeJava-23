@@ -43,8 +43,6 @@ public class Product {
         this.Productprice = price;
         this.quantity = quantity;
         this.Productdescription = color;
-
-        inventory.add(this);
     }
     
     public Product(Product product) {

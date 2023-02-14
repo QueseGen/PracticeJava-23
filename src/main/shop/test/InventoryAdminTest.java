@@ -6,40 +6,6 @@ import shop.model.*;
 import shop.model.User;
 
 
-public class Admin extends User{
-
-    public Admin(String name, String password) {
-        super(name, password);
-        //TODO Auto-generated constructor stub
-    }
-    public static void Ops( String operation,int index, int quantity){
-        switch (operation) {
-            case "read":
-                Product.getInventory();
-                break;
-            case "add":
-                Product.IventoryList().add(new Product("Testing", quantity));
-                break;
-            case "alt":
-                Product.getInventory();
-                // get product index
-                index = index - 1;
-                Product.getInventory(index);
-                Product.IventoryList().get(index).setProductQuantity(3);
-                break;
-            case "del":
-                Product.getInventory();
-                // get product index
-                index = index - 1;
-                Product.getInventory(index);
-                Product.IventoryList().remove(index);
-                break;
-
-        }
-    }
-
-
-}
 public class InventoryAdminTest {
 
     public static void main(String[] args) {
