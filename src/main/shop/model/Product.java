@@ -6,11 +6,13 @@ import java.util.Comparator;
  
 public class Product {
     
+    
     //VARIABLES
 
     private String Productname;
-    private double Productprice;
-    private int quantity;
+    private float Productprice;
+    private int Productquantity;
+    private int id;
 
     private int size;
     private String Productdescription;
@@ -26,22 +28,22 @@ public class Product {
 
     public Product( String name, int quanity) {
         this.Productname=name;
-        this.quantity=quanity;
+        this.Productquantity=quanity;
     }
 
-    public Product(String name, double price, int quantity, int size) {
+    public Product(String name, float price, int quantity, int size) {
         this.Productname = name;
         this.Productprice = price;
-        this.quantity = quantity;
+        this.Productquantity = quantity;
         this.size = size;
 
         inventory.add(this);
     }
 
-    public Product(String name, double price, int quantity,String color) {
+    public Product(String name, float price, int quantity,String color) {
         this.Productname = name;
         this.Productprice = price;
-        this.quantity = quantity;
+        this.Productquantity = quantity;
         this.Productdescription = color;
     }
     
@@ -51,7 +53,7 @@ public class Product {
         this.size = product.size;
         this.Productdescription = product.Productdescription;
         this.original=product;
-        this.quantity=product.quantity;
+        this.Productquantity=product.Productquantity;
     }
 
     public Product(Product product, Product old) {
@@ -60,13 +62,13 @@ public class Product {
         this.size = product.size;
         this.Productdescription = product.Productdescription;
         this.original=old;
-        this.quantity=product.quantity;
+        this.Productquantity=product.Productquantity;
     }
 
-    public Product(String name, double price, int quantity, int size, String color) {
+    public Product(String name, float price, int quantity, int size, String color) {
         this.Productname = name;
         this.Productprice = price;
-        this.quantity = quantity;
+        this.Productquantity = quantity;
         this.size = size;
         this.Productdescription = color;
 
@@ -74,31 +76,39 @@ public class Product {
     }
 
     //GETTERS AND SETTERS
+    
 
     public String getProductname() {
         return Productname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setProductname(String name) {
         this.Productname = name;
     }
 
-    public double getProductprice() {
+    public float getProductprice() {
         return Productprice;
     }
 
-    public void setProductprice(double price) {
+    public void setProductprice(float price) {
         this.Productprice = price;
     }
 
     public int getProductQuantity() {
-        return quantity;
+        return Productquantity;
     }
     
     public void setProductQuantity(int quantity) {
-        this.quantity = quantity;
+        this.Productquantity = quantity;
     }
-
     
     public Product getOriginal() {
         return original;
@@ -203,7 +213,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [ name=" + Productname + " | price=" + Productprice + " | quantity=" + quantity + " ]";
+        return "Product [ name=" + Productname + " | price=" + Productprice + " | quantity=" + Productquantity + " ]";
     }
 
     public String getProductdescription() {

@@ -8,9 +8,9 @@ import java.util.Comparator;
 public class ShoppingCart {
 
     // VARIABLES
-    private double SubTotal;
-    private double Total;
-    private final double SaleTax= .10;
+    private float SubTotal;
+    private float Total;
+    private final float SaleTax= .10;
     private ArrayList<Product> items;
     private ArrayList<Product> orginalItems;
     private int quanity;
@@ -29,7 +29,7 @@ public class ShoppingCart {
         pastOrders= new ArrayList<ShoppingCart>();
     }
 
-    public double getSubTotal() {
+    public float getSubTotal() {
          this.SubTotal = 0;
         for (Product item : this.items) {
             this.SubTotal = (item.getProductQuantity() * item.getProductprice()) + this.SubTotal;
@@ -38,12 +38,12 @@ public class ShoppingCart {
     }
 
     
-    public double getTaxes() {
+    public float getTaxes() {
         return this.SaleTax;
     }
 
-    public double getTotal(){
-        double taxes=getSubTotal()*getTaxes();
+    public float getTotal(){
+        float taxes=getSubTotal()*getTaxes();
         return getSubTotal()+taxes;
     }
 

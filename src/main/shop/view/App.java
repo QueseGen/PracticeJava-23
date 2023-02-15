@@ -45,19 +45,21 @@ public class App {
                     seeinventory.getInventory();
                     input=userInput.nextLine();
                     
-                    if (!IsInt(input, Warehouse.IventoryList().size())){ 
+                    while (!IsInt(input, Warehouse.IventoryList().size())){ 
                         System.out.print("Enter a Product # for more options: ");
                         input = userInput.nextLine(); } 
                     
-                    selected= seeinventory.IventoryList().get(Integer.parseInt(input)-1);
-
-                   //When ready to shop admin.openShoppingCart();
-                   clearscreen();
-                    System.out.printf("\nNice! you chose %s\t Details:\n\n", selected.getProductname());
-                    System.out.printf("Product #%d %15s |\tSelling at $%.2f per pair | %2s %d in stock.\n\n \t\tDescription:\n\t%s", (Integer.parseInt( input)), selected.getProductname(),
-                            selected.getProductprice(), "Currently", selected.getProductQuantity(), selected.getProductdescription());
-                    System.out.println("\n\n\tWhat would you like to do:\n#1: Add to Cart \n#2: Go back to Menu \n#3: View Shopping Cart");
-                    input = userInput.nextLine();
+                        selected = seeinventory.IventoryList().get(Integer.parseInt(input) - 1);;
+                        clearscreen();
+                        System.out.printf("\nNice! you chose %s\t Details:\n\n", selected.getProductname());
+                        System.out.printf(
+                                "Product #%d %15s |\tSelling at $%.2f per pair | %2s %d in stock.\n\n \t\tDescription:\n\t%s",
+                                (Integer.parseInt(input)), selected.getProductname(),
+                                selected.getProductprice(), "Currently", selected.getProductQuantity(),
+                                selected.getProductdescription());
+                        System.out.println(
+                                "\n\n\tWhat would you like to do:\n#1: Add to Cart \n#2: Go back to Menu \n#3: View Shopping Cart");
+                        input = userInput.nextLine();
                     break;
 
                 case "No", "N", "n", "nope","not yet", "no", "Exit", "exit", "nathan":
