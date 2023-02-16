@@ -7,7 +7,8 @@ import shop.model.Product;
 import shop.model.User;
 import shop.model.Warehouse;
 
-public class ShoppingCartUITest {
+
+public class ShoppingCartUIDBTest {
     static boolean sessionEnded=false;
 
     public static void main(String[] args) {
@@ -185,4 +186,6 @@ public class ShoppingCartUITest {
             return false;
         }
     }
+}
+
 }
