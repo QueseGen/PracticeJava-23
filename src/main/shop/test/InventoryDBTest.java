@@ -4,7 +4,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -34,51 +37,77 @@ public class InventoryDBTest {
     public static Connection getConnection(){
         return connection;
     }
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, SQLException {
 
-
-       
+        Connection con=getConnection();
+        Statement statement = getConnection().createStatement();
         ResultSet rs;
         PreparedStatement st;
+        String qry="";
 
-        String qry = "";
+        //Create User
+        createUser("Sam", "Grant");   
+        createUser("Bruce", "Banner"); 
 
-        // Not sure if relevant but Collection
-        Product seeinventory = new Product();
+        // Read Db
+        readUsers();
 
-
-        //Create
-        new Product("Nike slides", 34.99, 8, "red/white");
-        new Product("Crocs", 34.99, 8, "white");
-        new Product("Steppers", 34.99, 10, "black");
-        new Product("Air Force Ones", 120.99, 16, "white");
-        new Product("Nike shoes", 60.99, 16, "blue/white");
-        new Product("Benzzy Airs", 34.99, 8, "black/white");
-
-        //Read
-        seeinventory.getInventory();
+        //Update User
+        updateUser("Luke", "Bob");
         
+        //Delete Useer
+        deleteUser("Luke");
        
-        Scanner scannerTest = new Scanner(System.in);
-        System.out.print("Which product would you like to add to cart # ");
-        int itemNum = scannerTest.nextInt();
-        seeinventory.getInventory(itemNum);
-
-        //Update
-        System.out.print("How many would you like to buy # "); // would you like to add
-        int itemQuan = scannerTest.nextInt();
-        seeinventory.updateQuantity(itemNum, itemQuan);
-
-        //Delete
-        System.out.println("If you can delete one item what would it be?");
-        Thread.sleep(3000);
-        seeinventory.getInventory();
-        System.out.print("# ");
-        itemNum = scannerTest.nextInt();
-        seeinventory.deleteProduct(itemNum);
-
-        scannerTest.close();
-
+        //I should covert the inventory to a a data structure, have sorted then added.
     }
 
-}
+    public static String createUser(String getUsername, String getPwd){
+
+        String qry = "insert into users (USERNAME,PWD) values(?,?)";
+
+        try {
+            PreparedStatement st = getConnection().prepareStatement(qry);
+            st.setString(1, getUsername);
+            st.setString(2, getPwd);
+            st.executeUpdate();
+
+            return "Data Insert Success";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+
+    }
+    public static void readUsers() throws SQLException {
+        ResultSet rs=null;
+        
+        String qry="SELECT ID, USERNAME from users";
+        
+        try {
+            Statement stmt = getConnection().createStatement();
+            rs = stmt.executeQuery(qry);
+       
+            System.out.println("Data Retrived Success");
+        } catch (Exception e) { e.printStackTrace(); }
+        while (rs.next()) {
+            System.out.print(rs.getInt("ID") + " ");
+            System.out.println(rs.getString("USERNAME") );}
+        }
+    public static void updateUser(String getNewUsername, String getOldUsername) throws SQLException {
+        String qry = "update users set USERNAME=? where USERNAME=?";
+        PreparedStatement st = getConnection().prepareStatement(qry);
+
+        st.setString(1, getNewUsername);
+        st.setString(2, getOldUsername);
+        st.executeUpdate();
+        System.out.println("Data Update Success");
+    }
+
+    private static void deleteUser(String getUsername) throws SQLException {
+        String qry = "delete from users where USERNAME=?";
+        PreparedStatement st = getConnection().prepareStatement(qry);
+        st.setString(1, getUsername);
+
+        st.executeUpdate();
+    }
+    }
