@@ -1,3 +1,4 @@
+package examples.Advanced;
 import java.util.Scanner;
 
 public class Vowels {

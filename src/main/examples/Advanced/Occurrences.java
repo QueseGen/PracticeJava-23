@@ -1,3 +1,4 @@
+package examples.Advanced;
 import java.util.HashMap;
 
 public class Occurrences {
